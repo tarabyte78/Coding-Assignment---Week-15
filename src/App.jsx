@@ -13,6 +13,6 @@ function App() {
       <MovieApp />
     </>
   )
-}
+};
 
-export default App
+export default App;
