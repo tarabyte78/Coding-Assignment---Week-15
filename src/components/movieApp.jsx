@@ -17,12 +17,12 @@ function MovieApp() {
     rating: ''
   }); // State to store the details of a movie for adding or updating
 
-  // Fetch the list of movies when the component mounts
+// Fetch the list of movies when the component mounts
   useEffect(() => {
     fetchMovies();
   }, []);
 
-  // Function to fetch movies from the API
+// Function to fetch movies from the API
   const fetchMovies = async () => {
     console.log("Fetching movies...");
     try {
@@ -34,14 +34,14 @@ function MovieApp() {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`); // Handle HTTP errors
       }
-
+      
       setMovies(apiData); // Update the movies state with the fetched data
     } catch (error) {
       console.error('Error fetching movies:', error); // Log any errors
     }
   };
 
-  // Function to add a new movie to the database
+// Function to add a new movie to the database
   const addMovie = async (movie) => {
     try {
       const response = await fetch(API_URL, {
@@ -59,7 +59,7 @@ function MovieApp() {
     }
   };
 
-  // Function to update an existing movie in the database
+// Function to update an existing movie in the database
   const updateMovie = async (movie) => {
     try {
       const response = await fetch(`${API_URL}/${movie.id}`, {
@@ -77,7 +77,7 @@ function MovieApp() {
     }
   };
 
-  // Function to delete a movie from the database
+// Function to delete a movie from the database
   const deleteMovie = async (id) => {
     try {
       const response = await fetch(`${API_URL}/${id}`, {
@@ -92,14 +92,14 @@ function MovieApp() {
     }
   };
 
-  // Handle selecting a movie for editing
+// Handle selecting a movie for editing
   const handleSelectMovie = (movie) => {
     setSelectedMovie(movie); // Set the selected movie state
     setMovieDetails(movie); // Populate the movieDetails state with the selected movie's details
     setShowUpdateModal(true); // Show the update modal
   };
 
-  // Clear the current selection and close any open modals
+// Clear the current selection and close any open modals
   const handleClearSelection = () => {
     setSelectedMovie(null); // Clear the selected movie state
     setMovieDetails({
@@ -112,7 +112,7 @@ function MovieApp() {
     setShowAddModal(false); // Close the add modal
   };
 
-  // Handle input changes in the form fields
+// Handle input changes in the form fields
   const handleInputChange = (e) => {
     const { name, value } = e.target; // Get the name and value of the input field
     setMovieDetails({
@@ -121,12 +121,12 @@ function MovieApp() {
     }); // Update the movieDetails state with the new value
   };
 
-  // Handle the form submission for updating a movie
+// Handle the form submission for updating a movie
   const handleUpdateSubmit = () => {
     updateMovie({ ...movieDetails, id: selectedMovie.id }); // Update the movie with the current details
   };
 
-  // Handle the form submission for adding a new movie
+// Handle the form submission for adding a new movie
   const handleAddSubmit = () => {
     addMovie(movieDetails); // Add a new movie with the current details
   };
@@ -151,7 +151,7 @@ function MovieApp() {
         ))}
       </Row>
 
-      {/* Modal for updating a movie */}
+{/* Modal for updating a movie */}
       <Modal show={showUpdateModal} onHide={handleClearSelection}>
         <Modal.Header closeButton>
           <Modal.Title>Update Movie</Modal.Title>
